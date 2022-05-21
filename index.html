@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- usually this can just be the headline, but check in -->
+  <title>Headline headline!</title>
+  <!-- 
+        CHANGE THIS! "preview-img.png" defines what the preview image will be for 
+        links and social media, so be sure to change this to whatever the
+         dominant media will be
+    -->
+  <meta property="og:image" content="preview-img.png">
+
+  <!--
+        CHANGE THIS! Make the content something meaningful to the article
+        (reach out to editor for suggestions if needed)
+    -->
+  <meta property=“og:description” content="This is an amazing article" />
+
+  <!-- defines standard character set—useful for ensuring curly quotes
+      aren't corrupted by different encodings -->
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+  <!-- ensures mobile layout works-->
+  <meta name="viewport" content="width=device-width">
+
+
+  <!-- link to our logo for favicon -->
+  <link rel="icon" type="image/png"
+    href="https://dirgyzwl2hnqq.cloudfront.net/ff9419fb986f760c1b0b24d4b9046051/dist/img/favicons/apple-icon-57x57.png" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics COMMENT OUT UNTIL PUB -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-H0QFG1LJXS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-H0QFG1LJXS');
+    </script> -->
+  <!--/site tag-->
+
+  <!-- 
+        a reference to our brand fonts (if there's any Adobe font not 
+        available on the stylesheet, let the head digital news 
+        editor know and it can be added) 
+    -->
+  <link rel="stylesheet" href="https://use.typekit.net/gkx8zdh.css">
+
+  <!-- reference to your CSS -->
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <!-- reference to your JavaScript -->
+  <script src="script.js"></script>
+
+  <!-- add references to additional scripts here if needed -->
+</head>
+
+<body>
+  <!-- Content goes here -->
+  <p class=logo style="text-align: center; "><a href="https://www.dailyprincetonian.com">THE DAILY PRINCETONIAN</a></p>
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+
+
+  <input type="text" id="selectButton"> 
+
+
+
+
+  <!-- Create a div where the graph will take place -->
+  <!-- <p class = "selectButton">valueA</p>
+  <p class = "selectButton" >valueB</p>
+  <p class = "selectButton">valueC</p> -->
+
+  <div id="my_dataviz"></div>
+
+  <!-- Color Scale -->
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+  <script>
+
+    // set the dimensions and margins of the graph
+    var margin = { top: 10, right: 100, bottom: 30, left: 30 },
+      width = 800 - margin.left - margin.right,
+      height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+    //Read the data
+    d3.csv("allwordsfreq.csv", function (data) {
+
+      // List of groups (here I have one group per column)
+      // var allGroup = ["valueA", "valueB", "valueC"]
+
+       // add the options to the button
+      //  d3.select("#selectButton")
+      //   .selectAll('myOptions')
+      //   .data(allGroup)
+      //   .enter()
+      //   .append('option')
+      //   .text(function (d) { return d; }) // text showed in the menu
+      //   .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+
+      // A color scale: one color for each group
+      var myColor = "pink";
+
+      // Add X axis --> it is a date format
+      var x = d3.scaleLinear()
+        .domain([1880,2010])
+        .range([0, width]);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+      // Initialize an Y axis
+      var y = d3.scaleLinear().domain([0, d3.max(data, function(d) { 
+          return +d.editors; 
+        })]).range([height, 0]);
+      var yAxis = d3.axisLeft().scale(y);
+      svg.append("g")
+        .attr("class", "myYaxis")
+        .call(d3.axisLeft(y));
+
+      // Initialize line with group a
+      var line = svg
+        .append('g')
+        .append("path")
+        .datum(data)
+        .attr("d", d3.area()
+          .x(function (d) { return x(+d.timedecade) })
+          .y0(height)
+          .y1(function (d) { return y(+d.editors) })
+        )
+        .attr("stroke", function (d) { return myColor })
+        .style("stroke-width", 4)
+        .style("fill", myColor)
+
+      // A function that update the chart
+      function update(selectedGroup) {
+        
+
+
+        // Create new data with the selection?
+        var dataFilter = data.map(function (d) { return { time: d.timedecade, value: d[selectedGroup] } })
+
+        y.domain([0, d3.max(data, function(d) { 
+          return +d[selectedGroup]; 
+        })]);
+        svg.selectAll(".myYaxis")
+          .transition()
+          .duration(1000)
+          .call(yAxis);
+        
+        // console.log(data)
+
+        // Give these new data to update line
+        line
+          .datum(dataFilter)
+          .transition()
+          .duration(1000)
+          .attr("d", d3.area()
+            .x(function (d) {return x(+d.time) })
+            .y0(height)
+            .y1(function (d) {  return y(+d.value) })
+          )
+          .attr("stroke", function (d) { return myColor})
+          .style("fill", myColor)
+          
+      }
+
+      // When the button is changed, run the updateChart function
+      // or # on change
+      d3.selectAll("#selectButton").on("change", function (d) {
+        // recover the option that has been chosen
+        var selectedOption = d3.select(this).property("value")
+
+
+   
+        // run the updateChart function with this selected option
+        update(selectedOption)
+      })
+
+    })
+  </script>
+</body>
+
+
+
+</html>

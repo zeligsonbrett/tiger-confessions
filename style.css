@@ -1,0 +1,26 @@
+* {
+    margin: 0; padding: 0;
+    font-family: minion-pro;
+   
+  }
+  
+
+
+.logo a{
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+    
+}
+
+
+/* sets different rules for narrower screens (usually meaning mobile) If
+you want to quickly test how this works on your computer, just make your 
+browser window really skinny */
+@media screen and (max-width: 800px) {
+
+    .logo{
+        font-size: 20px;
+    }
+    
+  }
