@@ -64,134 +64,91 @@
   <script src="https://d3js.org/d3.v4.js"></script>
 
 
-  <input type="text" id="selectButton"> 
+  <!-- <input type="text" id="selectButton">  -->
 
 
 
 
   <!-- Create a div where the graph will take place -->
-  <!-- <p class = "selectButton">valueA</p>
-  <p class = "selectButton" >valueB</p>
-  <p class = "selectButton">valueC</p> -->
 
-  <div id="my_dataviz"></div>
+  <div class = "graph-block">
 
-  <!-- Color Scale -->
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- <div class = "graph-terms">
+      <p class = "selectButton">McCarter</p>
+      <p class = "selectButton">gold</p>
+      <p class = "selectButton">intramural</p>
+      <p class = "selectButton">geology</p>
+      <p class = "selectButton">Roosevelt</p>
+      <p class = "selectButton">Crisler</p>
+    </div> -->
+
+  <div id="my_dataviz2"></div>
+  
+    <div id="my_dataviz"></div>
+  </div>
+
+
+
+
+
+
+
+  <script src = "linegraph.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
 
   <script>
 
+    // List of words
+    // var myWords = ["Roosevelt", "McCarter", "gold", "geology", "Crisler"]
+
+    var myWords = [{word: "Roosevelt", size: "18.1"}, {word: "McCarter", size: "16.6"}, {word: "gold", size: "14.3"}, {word: "geology", size: "12.4"}, {word: "Crisler", size: "24.9"} ]
+
+    
     // set the dimensions and margins of the graph
-    var margin = { top: 10, right: 100, bottom: 30, left: 30 },
-      width = 800 - margin.left - margin.right,
-      height = 400 - margin.top - margin.bottom;
-
+    var margin2 = {top: 10, right: 10, bottom: 10, left: 10},
+        width2 = 300 - margin2.left - margin2.right,
+        height2 = 450 - margin2.top - margin2.bottom;
+    
     // append the svg object to the body of the page
-    var svg = d3.select("#my_dataviz")
-      .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+    var svg2 = d3.select("#my_dataviz2").append("svg")
+        .attr("width", width2 + margin.left + margin.right)
+        .attr("height", height2 + margin.top + margin.bottom)
       .append("g")
-      .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+    
+    // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+    // Wordcloud features that are different from one word to the other must be here
+    var layout = d3.layout.cloud()
+      .size([width2, height2])
+      .words(myWords.map(function(d) { return {text: d.word, size:d.size * 2}; }))
+      .padding(10)        //space between words
+      .rotate(0)       // rotation angle in degrees
+      .fontSize(function(d) { return d.size; })      // font size of words
+      .on("end", draw);
+    layout.start();
+    
+    // This function takes the output of 'layout' above and draw the words
+    // Wordcloud features that are THE SAME from one word to the other can be here
+    function draw(words) {
+      svg2
+        .append("g")
+          .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+          .selectAll("text")
+            .data(words)
+          .enter().append("text")
+          .style("font-size", function(d) { return d.size; })
+            .attr("text-anchor", "middle")
+            .attr("class", "selectButton")
+            .attr("transform", function(d) {
+              return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            })
+            .text(function(d) { return d.text; });
+    }
+    </script>
 
-    //Read the data
-    d3.csv("allwordsfreq.csv", function (data) {
-
-      // List of groups (here I have one group per column)
-      // var allGroup = ["valueA", "valueB", "valueC"]
-
-       // add the options to the button
-      //  d3.select("#selectButton")
-      //   .selectAll('myOptions')
-      //   .data(allGroup)
-      //   .enter()
-      //   .append('option')
-      //   .text(function (d) { return d; }) // text showed in the menu
-      //   .attr("value", function (d) { return d; }) // corresponding value returned by the button
-
-
-      // A color scale: one color for each group
-      var myColor = "pink";
-
-      // Add X axis --> it is a date format
-      var x = d3.scaleLinear()
-        .domain([1880,2010])
-        .range([0, width]);
-      svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
-
-      // Initialize an Y axis
-      var y = d3.scaleLinear().domain([0, d3.max(data, function(d) { 
-          return +d.editors; 
-        })]).range([height, 0]);
-      var yAxis = d3.axisLeft().scale(y);
-      svg.append("g")
-        .attr("class", "myYaxis")
-        .call(d3.axisLeft(y));
-
-      // Initialize line with group a
-      var line = svg
-        .append('g')
-        .append("path")
-        .datum(data)
-        .attr("d", d3.area()
-          .x(function (d) { return x(+d.timedecade) })
-          .y0(height)
-          .y1(function (d) { return y(+d.editors) })
-        )
-        .attr("stroke", function (d) { return myColor })
-        .style("stroke-width", 4)
-        .style("fill", myColor)
-
-      // A function that update the chart
-      function update(selectedGroup) {
-        
-
-
-        // Create new data with the selection?
-        var dataFilter = data.map(function (d) { return { time: d.timedecade, value: d[selectedGroup] } })
-
-        y.domain([0, d3.max(data, function(d) { 
-          return +d[selectedGroup]; 
-        })]);
-        svg.selectAll(".myYaxis")
-          .transition()
-          .duration(1000)
-          .call(yAxis);
-        
-        // console.log(data)
-
-        // Give these new data to update line
-        line
-          .datum(dataFilter)
-          .transition()
-          .duration(1000)
-          .attr("d", d3.area()
-            .x(function (d) {return x(+d.time) })
-            .y0(height)
-            .y1(function (d) {  return y(+d.value) })
-          )
-          .attr("stroke", function (d) { return myColor})
-          .style("fill", myColor)
-          
-      }
-
-      // When the button is changed, run the updateChart function
-      // or # on change
-      d3.selectAll("#selectButton").on("change", function (d) {
-        // recover the option that has been chosen
-        var selectedOption = d3.select(this).property("value")
-
-
-   
-        // run the updateChart function with this selected option
-        update(selectedOption)
-      })
-
-    })
-  </script>
+ 
 </body>
 
 
