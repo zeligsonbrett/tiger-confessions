@@ -17,18 +17,40 @@
 
 }
 
+.intro{
+  min-height: 100vh;
+}
+
 .decade-text{
-  width: 60%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
 
+
   font-size: 19px;
+}
+
+.decade-header{
+
+  text-align: center;
+  margin-bottom: 50px;
+  font-family: franklin-gothic-urw-cond;
+  color: #c24532;
 }
 
 
 .decade-text p{
   padding-bottom: 15px;
+}
+
+.decade-text a{
+  color: #c24532;
+  text-decoration: none;
+}
+
+.decade-text a:hover{
+  text-decoration: underline;
 }
 
 .graph-block-container{
@@ -53,6 +75,7 @@ opacity: 1;
 
 .selected{
   opacity: 1;
+  font-weight: bold;
 }
 .graph-block{
   display: flex;
@@ -67,6 +90,67 @@ g.tick line{
 
 path.domain{
   display: none;
+}
+
+.content{
+  display: flex;
+}
+
+.decades{
+  width: 90%;
+}
+
+.decade{
+
+}
+/*nav bar styles */
+#navigation{
+  height: 100vh;
+  width: 10%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0; /* required */
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  transition: height .4s ease-in-out;
+  padding-left: 4%;
+
+}
+.active{
+  font-weight: bold;
+  font-size: x-large;
+  color: #c24532 !important;
+  opacity: 100% !important;
+}
+
+#navigation ul li a{
+  text-decoration: none;
+  opacity: 75%;
+  font-family: franklin-gothic-urw, sans-serif;
+  color: #1a1a1a;
+}
+
+#navigation ul li a:hover{
+ opacity: 100%;
+}
+
+#navigation ul{
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+ transition: opacity 0.1s ease;
+ transition-delay: 0.2s;
+ height: 100%;
+ padding-top: 1.25rem;
+}
+
+.nav-wrapper{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15% ;
 }
 
 
