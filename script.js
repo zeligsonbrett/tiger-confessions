@@ -76,12 +76,12 @@ d3.csv("allwordsfreq.csv", function (data) {
 
     // A function that update the chart
     function update(button, selectedGroup, selectedDecade) {
-        let boxes = d3.select("#" + selectedDecade).select(".word-cloud").selectAll("text")
-        boxes.forEach(box => {
-            box.classList.remove('selected');
-            console.log(box)
-          });
+        d3.select("#" + selectedDecade).select(".word-cloud").select(".selected").classed("selected",false);
 
+        
+        
+
+     
     
         // selected the right chart elements for the decade
         let selectedSvg = d3.select("#" + selectedDecade).select(".mountain-chart svg g");
@@ -118,7 +118,7 @@ d3.csv("allwordsfreq.csv", function (data) {
             .text("mentions of " + selectedGroup + " every 10000 words")
         
         // highlight selected group
-        button.setAttribute("class", "selected")
+        button.classList.add("selected")
     }
 
     // When the button is changed, run the updateChart function
