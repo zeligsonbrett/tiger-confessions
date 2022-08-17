@@ -15,7 +15,7 @@ let wordCloudDict = {
     ]
 }
 // set the dimensions and margins of the graph
-let margin = { top: 10, right: 100, bottom: 30, left: 30 },
+let margin = { top: 10, right: 50, bottom: 30, left: 50 },
     width = 500 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
@@ -28,120 +28,13 @@ let svg = d3.selectAll(".mountain-chart")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-//Read the data
-d3.csv("allwordsfreq.csv", function (data) {
-    // filter out data
-
-    // A color scale: one color for each group
-    let myColor = "#1a1a1a";
-
-    // Add X axis --> it is a date format
-    let x = d3.scaleLinear()
-        .domain([new Date(1880), new Date(2010)])
-        .range([0, width]);
-
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x).tickFormat(d3.format('d'))).selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .attr("transform", function (d) {
-            return "rotate(-50)";
-        });
-
-    // Initialize an Y axis
-    let y = d3.scaleLinear().domain([0, d3.max(data, function (d) {
-        return +d.she * 10;
-    })]).range([height, 0]);
-    let yAxis = d3.axisLeft().scale(y);
-    svg.append("g")
-        .attr("class", "myYaxis")
-        .call(d3.axisLeft(y));
-
-
-    let line = svg
-        .append('g')
-        .append("path")
-        .datum(data)
-        .attr("d", d3.area()
-            .x(function (d) { return x(+d.timedecade) })
-            .y0(height)
-            .y1(function (d) { return y(+d.she * 10) })
-        )
-        .attr("stroke", function (d) { return myColor })
-        .attr("class", "line")
-        .style("stroke-width", 2)
-        .style("fill", myColor)
-
-    // A function that update the chart
-    function update(button, selectedGroup, selectedDecade) {
-        d3.select("#" + selectedDecade).select(".word-cloud").select(".selected").classed("selected",false);
-
-        
-        
-
-     
-    
-        // selected the right chart elements for the decade
-        let selectedSvg = d3.select("#" + selectedDecade).select(".mountain-chart svg g");
-        let selectedLine = selectedSvg.select(".line");
-
-        // Create new data with the selection?
-        let dataFilter = data.map(function (d) { return { time: d.timedecade, value: d[selectedGroup] } })
-
-        y.domain([0, d3.max(data, function (d) {
-            return +d[selectedGroup] * 10;
-        })]);
-        selectedSvg.selectAll(".myYaxis")
-            .transition()
-            .duration(1000)
-            .call(yAxis);
-
-        // console.log(data)
-
-        // Give these new data to update line
-        selectedLine
-            .datum(dataFilter)
-            .transition()
-            .duration(1000)
-            .attr("d", d3.area()
-                .x(function (d) { return x(+d.time) })
-                .y0(height)
-                .y1(function (d) { return y(+d.value * 10) })
-            )
-            .attr("stroke", function (d) { return myColor })
-            .style("fill", myColor)
-
-        // update the chart header
-        d3.select("#" + selectedDecade).select(".chart-title")
-            .text("mentions of " + selectedGroup + " every 10000 words")
-        
-        // highlight selected group
-        button.classList.add("selected")
-    }
-
-    // When the button is changed, run the updateChart function
-    // or # on change
-    d3.selectAll(".selectButton").on("click", function (d) {
-        // recover the option that has been chosen
-        let selectedWord = d3.select(this).text().toLowerCase();
-        // get id of container
-        let selectedDecade = this.closest('.graph-block-container').id
-
-
-        // run the updateChart function with this selected option
-        update(this, selectedWord, selectedDecade)
-    })
-
-})
 
 // set the dimensions and margins of the graph
 let margin2 = { top: 10, right: 10, bottom: 10, left: 10 },
     width2 = 300 - margin2.left - margin2.right,
     height2 = 300 - margin2.top - margin2.bottom;
 
-
+// initialize the word clouds, there's probably a way to do this without a for loop
 for (let decade in wordCloudDict) {
     // append the svg object to the body of the page
     let cloud = d3.select("#d" + decade).select(".word-cloud").append("svg")
@@ -181,5 +74,114 @@ for (let decade in wordCloudDict) {
             })
             .text(function (d) { return d.text; });
     }
-
 }
+//Read the data
+d3.csv("allwordsfreq.csv", function (data) {
+    // off black
+    let myColor = "#1a1a1a";
+
+    // Add X axis --> it is a date format
+    let x = d3.scaleLinear()
+        .domain([new Date(1880), new Date(2010)])
+        .range([0, width]);
+
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).tickFormat(d3.format('d'))).selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", function (d) {
+            return "rotate(-50)";
+        });
+
+    // Initialize an Y axis and line, using arbitrary starting scale (the word "the")
+    let y = d3.scaleLinear().domain([0, d3.max(data, function (d) {
+        return +d.the * 10;
+    })]).range([height, 0]);
+    let yAxis = d3.axisLeft().scale(y);
+    svg.append("g")
+        .attr("class", "myYaxis")
+        .call(d3.axisLeft(y));
+
+
+    let line = svg
+        .append('g')
+        .append("path")
+        .datum(data)
+        .attr("d", d3.area()
+            .x(function (d) { return x(+d.timedecade) })
+            .y0(height)
+            .y1(function (d) { return y(+d.the * 10) })
+        )
+        .attr("stroke", function (d) { return myColor })
+        .attr("class", "line")
+        .style("stroke-width", 2)
+        .style("fill", myColor)
+
+    // A function that update the chart
+    function update(button, selectedGroup, selectedDecade) {
+        d3.select("#" + selectedDecade).select(".word-cloud").select(".selected").classed("selected",false);
+        // selected the right chart elements for the decade
+        let selectedSvg = d3.select("#" + selectedDecade).select(".mountain-chart svg g");
+        let selectedLine = selectedSvg.select(".line");
+
+        // Create new data with the selection?
+        let dataFilter = data.map(function (d) { return { time: d.timedecade, value: d[selectedGroup] } })
+
+        y.domain([0, d3.max(data, function (d) {
+            return +d[selectedGroup] * 10;
+        })]);
+        selectedSvg.selectAll(".myYaxis")
+            .transition()
+            .duration(1000)
+            .call(yAxis);
+
+        // Give these new data to update line
+        selectedLine
+            .datum(dataFilter)
+            .transition()
+            .duration(1000)
+            .attr("d", d3.area()
+                .x(function (d) { return x(+d.time) })
+                .y0(height)
+                .y1(function (d) { return y(+d.value * 10) })
+            )
+            .attr("stroke", function (d) { return myColor })
+            .style("fill", myColor)
+
+        // update the chart header
+        d3.select("#" + selectedDecade).select(".chart-title")
+            .text("Frequency of " + selectedGroup + " every 100,000 words")
+        
+        // highlight selected group
+        button.classList.add("selected")
+    }
+
+    // When the button is changed, run the updateChart function
+    // or # on change
+    d3.selectAll(".selectButton").on("click", function (d) {
+        // recover the option that has been chosen
+        let selectedWord = d3.select(this).text().toLowerCase();
+        // get id of container
+        let selectedDecade = this.closest('.graph-block-container').id
+
+
+        // run the updateChart function with this selected option
+        update(this, selectedWord, selectedDecade)
+    })
+
+    // VERY HACKY way to intialize all the mountain charts to the first word
+    for(let decade in wordCloudDict){
+        let word = wordCloudDict[decade][0]['word']
+        let element = d3.select("#d" + decade)
+                        .select(".word-cloud")
+                        .selectAll(".selectButton")
+                        .filter(function(){ 
+                            return d3.select(this).text() == word
+                        })
+        update(element.node(), word.toLowerCase(), "d" + decade)
+    }
+})
+
+

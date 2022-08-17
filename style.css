@@ -19,7 +19,10 @@
 
 .decade-text{
   width: 60%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+
   font-size: 19px;
 }
 
@@ -29,9 +32,14 @@
 }
 
 .graph-block-container{
-
   width: 70%;
   margin: auto;
+}
+
+.mountain-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .selectButton{
 cursor: pointer;
@@ -73,6 +81,10 @@ browser window really skinny */
     }
     .graph-block{
       flex-direction: column;
+    }
+
+    .mountain-block{
+      align-items: center;
     }
     
   }
