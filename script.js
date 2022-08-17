@@ -1,9 +1,9 @@
 // word cloud data
 let wordCloudDict = {
     "1930": [
+        { word: "gold", size: "14.3" },
         { word: "Roosevelt", size: "18.1" },
         { word: "McCarter", size: "16.6" },
-        { word: "gold", size: "14.3" },
         { word: "geology", size: "12.4" },
         { word: "Crisler", size: "24.9" },
         { word: "intramural", size: "14.3" }
@@ -183,5 +183,6 @@ d3.csv("allwordsfreq.csv", function (data) {
         update(element.node(), word.toLowerCase(), "d" + decade)
     }
 })
+
 
 
