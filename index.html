@@ -51,17 +51,17 @@
   <!-- reference to your CSS -->
   <link href="style.css" rel="stylesheet" type="text/css" />
 
-  <!-- reference to your JavaScript -->
-  <script src="script.js"></script>
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
 
-  <!-- add references to additional scripts here if needed -->
+
 </head>
 
 <body>
   <!-- Content goes here -->
   <p class=logo style="text-align: center; "><a href="https://www.dailyprincetonian.com">THE DAILY PRINCETONIAN</a></p>
-  <!-- Load d3.js -->
-  <script src="https://d3js.org/d3.v4.js"></script>
+
 
 
   <!-- <input type="text" id="selectButton">  -->
@@ -71,86 +71,76 @@
 
   <!-- Create a div where the graph will take place -->
 
-  <div class = "graph-block">
+  <div class="graph-block-container" id="d1930">
+    <div class="graph-block">
+      <div class="mountain-block">
+        <p class="chart-title"></p>
+        <div class="mountain-chart" id="my_dataviz"></div>
+      </div>
+      <div class="word-cloud" id="my_dataviz2"></div>
+    </div>
+  </div>
 
-    <!-- <div class = "graph-terms">
-      <p class = "selectButton">McCarter</p>
-      <p class = "selectButton">gold</p>
-      <p class = "selectButton">intramural</p>
-      <p class = "selectButton">geology</p>
-      <p class = "selectButton">Roosevelt</p>
-      <p class = "selectButton">Crisler</p>
-    </div> -->
+  <div class="decade-text">
 
-  <div id="my_dataviz2"></div>
-  
-    <div id="my_dataviz"></div>
+
+    <p>
+      The term “gold,” oftentimes referring to stories about moving off the gold standard, spiked in usage during the
+      1930s, one of the key national political debates in the early years of The Great Depression.
+    </p>
+    <p>
+      In local coverage, Fritz Crisler <a
+        href="https://theprince.princeton.edu/princetonperiodicals/?a=d&d=Princetonian19320226-01.2.9&srpos=2&e=------193-en-20-Princetonian-1-byDA-txt-txIN-crisler------">signed
+        on</a> as Head Football Coach in 1932 — the first football coach in sixty-three years to not be a Princeton
+      alumni. He would go on to coach successfully for six years, including <a
+        href="http://www.princeton.edu/~paw/columns/under_the_ivy/uti032305.html">two undefeated seasons</a>, until he
+      moved to the University of Michigan, a decision the Prince’s regular sports analysis column, <em>Time Out</em>,
+      called <a
+        href="https://theprince.princeton.edu/princetonperiodicals/?a=d&d=Princetonian19380211-01.2.19&srpos=38&e=------193-en-20-Princetonian-21-byDA.rev-txt-txIN-crisler------">“regrettable”</a>
+      but understandable given that Crisler had “no really intimate contact with Princeton.”
+    </p>
+    <p>
+      Although Princeton had been playing intramural sports for decades, coverage of intramural sports rose sharply in
+      the 1930s, with game schedules and outcomes printed regularly. The program was so popular that James Tyson, then
+      scribe at T<em>he Harvard Crimson</em>, wrote in to <a
+        href="https://theprince.princeton.edu/princetonperiodicals/?a=d&d=Princetonian19370428-01.2.10&srpos=20&e=------193-en-20-Princetonian-1--txt-txIN-intramural------">praise
+        it</a> compared to Harvard’s much smaller intramural league.
+    </p>
+    <p>
+      The 1930s also saw the opening of <a
+        href="https://theprince.princeton.edu/princetonperiodicals/?a=d&d=Princetonian19300109-01.2.11&srpos=1&e=------193-en-20-Princetonian-1-byDA-txt-txIN-mcarter------">McCarter
+        Theatre</a>, designed and financed by the <a
+        href="https://www.mccarter.org/aboutmccarter#:~:text=The%20McCarter%20Theatre%20opened%20on,Princeton%20University's%20famed%20Triangle%20Club.">Triangle
+        Club</a> and made possible by a $250,000 gift from alumni Thomas N. McCarter '88
+    </p>
+    <p>
+      Usage of the word “geology” also peaked, used oftentimes in reference to “<a
+        href="https://geosciences.princeton.edu/about/history/1930-1950">an unprecedented array</a>” of field work trips
+      to locations including <a
+        href="https://theprince.princeton.edu/princetonperiodicals/?a=d&d=Princetonian19300308-01.2.25&srpos=24&e=------193-en-20-Princetonian-21-byDA-txt-txIN-geology------">The
+        West Indies</a>, <a
+        href="https://theprince.princeton.edu/princetonperiodicals/?a=d&d=Princetonian19300616-01.2.27&srpos=65&e=------193-en-20-Princetonian-61-byDA-txt-txIN-geology------">Yellowstone</a>,
+      and <a
+        href="https://theprince.princeton.edu/princetonperiodicals/?a=d&d=Princetonian19301216-01.2.5&srpos=80&e=------193-en-20-Princetonian-61-byDA-txt-txIN-geology------">Canada</a>.
+    </p>
+  </div>
+
+
+  <div class="graph-block-container" id="d1940">
+    <div class="graph-block">
+      <div class="mountain-block">
+        <p class="chart-title"></p>
+        <div class="mountain-chart"></div>
+      </div>
+      <div class="word-cloud"></div>
+    </div>
   </div>
 
 
 
-
-
-
-
-  <script src = "linegraph.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
-
-
-  <script>
-
-    // List of words
-    // var myWords = ["Roosevelt", "McCarter", "gold", "geology", "Crisler"]
-
-    var myWords = [{word: "Roosevelt", size: "18.1"}, {word: "McCarter", size: "16.6"}, {word: "gold", size: "14.3"}, {word: "geology", size: "12.4"}, {word: "Crisler", size: "24.9"} ]
-
-    
-    // set the dimensions and margins of the graph
-    var margin2 = {top: 10, right: 10, bottom: 10, left: 10},
-        width2 = 300 - margin2.left - margin2.right,
-        height2 = 450 - margin2.top - margin2.bottom;
-    
-    // append the svg object to the body of the page
-    var svg2 = d3.select("#my_dataviz2").append("svg")
-        .attr("width", width2 + margin.left + margin.right)
-        .attr("height", height2 + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")");
-    
-    // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
-    // Wordcloud features that are different from one word to the other must be here
-    var layout = d3.layout.cloud()
-      .size([width2, height2])
-      .words(myWords.map(function(d) { return {text: d.word, size:d.size * 2}; }))
-      .padding(10)        //space between words
-      .rotate(0)       // rotation angle in degrees
-      .fontSize(function(d) { return d.size; })      // font size of words
-      .on("end", draw);
-    layout.start();
-    
-    // This function takes the output of 'layout' above and draw the words
-    // Wordcloud features that are THE SAME from one word to the other can be here
-    function draw(words) {
-      svg2
-        .append("g")
-          .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
-          .selectAll("text")
-            .data(words)
-          .enter().append("text")
-          .style("font-size", function(d) { return d.size; })
-            .attr("text-anchor", "middle")
-            .attr("class", "selectButton")
-            .attr("transform", function(d) {
-              return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-            })
-            .text(function(d) { return d.text; });
-    }
-    </script>
-
- 
 </body>
 
+<script type="module" src="script.js"></script>
 
 
 </html>

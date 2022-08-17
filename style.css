@@ -1,11 +1,11 @@
 * {
     margin: 0; padding: 0;
-    font-family: minion-pro;
    
    
   }
   html, body{
     background-color: #F8F4EA;
+    font-family: minion-pro;
   }
 
 
@@ -17,7 +17,22 @@
 
 }
 
+.decade-text{
+  width: 60%;
+  margin: auto;
+  font-size: 19px;
+}
 
+
+.decade-text p{
+  padding-bottom: 15px;
+}
+
+.graph-block-container{
+
+  width: 70%;
+  margin: auto;
+}
 .selectButton{
 cursor: pointer;
 font-size: xx-large;
@@ -27,12 +42,15 @@ opacity: 0.5;
 .selectButton:hover{
 opacity: 1;
 }
+
+.selected{
+  opacity: 1;
+}
 .graph-block{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 
 
 g.tick line{
@@ -52,6 +70,9 @@ browser window really skinny */
 
     .logo{
         font-size: 20px;
+    }
+    .graph-block{
+      flex-direction: column;
     }
     
   }
