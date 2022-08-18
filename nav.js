@@ -2,7 +2,7 @@
 var $navigationLinks = $('#navigation > .nav-wrapper > ul > li > a');
 // console.log($navigationLinks)
 // cache (in reversed order) the sections
-var $cards = $($(".decade").get().reverse());
+var $cards = $($(".decade-header").get().reverse());
 
 
 
@@ -45,7 +45,7 @@ function highlightNavigation() {
     var sectionTop = currentSection.offset().top;
 
     // if the user has scrolled over the top of the section  
-    if (scrollPosition >= sectionTop) {
+    if (scrollPosition >= sectionTop - 200) {
       // get the section id
       var id = currentSection.attr('id');
       // get the corresponding navigation link
