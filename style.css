@@ -24,6 +24,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  min-height: 100vh;
 }
 
 .intro img{
@@ -231,6 +232,7 @@ browser window really skinny */
     }
     .intro{
       flex-direction: column-reverse;
+      min-height: 70vh;
     }
 
     .intro img{
