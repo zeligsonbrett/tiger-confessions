@@ -131,6 +131,8 @@ path.domain{
 }
 
 .decade{
+  display: flex;
+  flex-direction: column;
 
 }
 /*nav bar styles */
@@ -195,11 +197,27 @@ browser window really skinny */
         font-size: 20px;
     }
     .graph-block{
-      flex-direction: column;
+      flex-direction: column-reverse;
     }
 
     .mountain-block{
       align-items: center;
     }
     
+    #navigation{
+      display: none;
+    }
+
+    .decades{
+      width: 100%;
+    }
+
+    .intro{
+      flex-direction: column-reverse;
+    }
+
+    .intro img{
+      width: 90%;
+    }
+
   }
