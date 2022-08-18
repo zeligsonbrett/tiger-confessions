@@ -108,6 +108,11 @@ opacity: 1;
   align-items: center;
 }
 
+.chart-title{
+  color: #F8F4EA !important;
+  fill: #F8F4EA !important;
+}
+
 
 g.tick line{
   display: none;
