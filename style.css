@@ -100,7 +100,7 @@ opacity: 1;
 .selected{
   opacity: 1;
   font-weight: bold;
- fill: #c24532;
+ fill: #c24532 !important;
 }
 .graph-block{
   display: flex;
