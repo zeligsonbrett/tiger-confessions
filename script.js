@@ -14,6 +14,8 @@ let wordCloudDict = {
         { word: "test", size: "14.3" },
     ]
 }
+
+let myColor = "#F8F4EA";
 // set the dimensions and margins of the graph
 let margin = { top: 10, right: 50, bottom: 30, left: 50 },
     width = 500 - margin.left - margin.right,
@@ -69,6 +71,7 @@ for (let decade in wordCloudDict) {
             .style("font-size", function (d) { return d.size; })
             .attr("text-anchor", "middle")
             .attr("class", "selectButton")
+            .style("fill", myColor)
             .attr("transform", function (d) {
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
             })
@@ -77,8 +80,7 @@ for (let decade in wordCloudDict) {
 }
 //Read the data
 d3.csv("allwordsfreq.csv", function (data) {
-    // off black
-    let myColor = "#1a1a1a";
+
 
     // Add X axis --> it is a date format
     let x = d3.scaleLinear()
@@ -91,6 +93,7 @@ d3.csv("allwordsfreq.csv", function (data) {
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
+        .style("fill", myColor)
         .attr("transform", function (d) {
             return "rotate(-50)";
         });
@@ -102,6 +105,7 @@ d3.csv("allwordsfreq.csv", function (data) {
     let yAxis = d3.axisLeft().scale(y);
     svg.append("g")
         .attr("class", "myYaxis")
+        .style("fill", myColor)
         .call(d3.axisLeft(y));
 
 
@@ -135,6 +139,7 @@ d3.csv("allwordsfreq.csv", function (data) {
         selectedSvg.selectAll(".myYaxis")
             .transition()
             .duration(1000)
+            .style("fill", myColor)
             .call(yAxis);
 
         // Give these new data to update line
@@ -153,6 +158,7 @@ d3.csv("allwordsfreq.csv", function (data) {
         // update the chart header
         d3.select("#" + selectedDecade).select(".chart-title")
             .text("Frequency of " + selectedGroup + " every 100,000 words")
+            .style("fill", myColor)
         
         // highlight selected group
         button.classList.add("selected")

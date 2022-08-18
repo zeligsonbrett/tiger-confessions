@@ -4,8 +4,9 @@
    
   }
   html, body{
-    background-color: #F8F4EA;
+    /* background-color: #F8F4EA; */
     font-family: minion-pro;
+    background-color: #1a1a1a;
   }
 
 
@@ -22,7 +23,7 @@
   background-color: #1a1a1a;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -35,6 +36,7 @@
 .intro .headline{
   color: white;
   font-family: franklin-gothic-urw;
+  line-height: 30px;
 }
 
 .years{
@@ -46,6 +48,8 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
+  color: #F8F4EA;
+  font-family: franklin-gothic-urw;
 
 
   font-size: 19px;
@@ -149,7 +153,7 @@ path.domain{
   text-decoration: none;
   opacity: 75%;
   font-family: franklin-gothic-urw, sans-serif;
-  color: #1a1a1a;
+  color: #F8F4EA;
 }
 
 #navigation ul li a:hover{
