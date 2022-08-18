@@ -12,6 +12,13 @@ let wordCloudDict = {
         { word: "this", size: "18.1" },
         { word: "is", size: "16.6" },
         { word: "test", size: "14.3" },
+    ],
+    // sizes wrong
+    "2010": [
+        { word: "Obama", size: "18.1" },
+        { word: "Facebook", size: "16.6" },
+        { word: "climate", size: "14.3" },
+        { word: "mental", size: "14.3" },
     ]
 }
 

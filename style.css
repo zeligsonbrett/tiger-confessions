@@ -36,7 +36,12 @@
 .intro .headline{
   color: white;
   font-family: franklin-gothic-urw;
-  line-height: 30px;
+  line-height: 40px;
+}
+
+.overline{
+  padding-bottom: 5px;
+  color: #c24532;
 }
 
 .years{
@@ -80,6 +85,47 @@
 .graph-block-container{
   width: 70%;
   margin: auto;
+}
+
+.image-block{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+.image-block .image-block-container{
+  width: 30%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  transition: transform .2s;
+  /* transition: opacity .2s;
+  opacity: 60%; */
+}
+
+
+.image-block .image-block-container:hover {
+  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  /* opacity: 100%; */
+}
+
+.image-block-container img{
+  width: 100%;
+}
+
+.image-block .caption{
+  color:#F8F4EA;
+  font-style: italic;
+
+
+}
+
+.caption-wrapper{
+  height: 100%;
+  padding-left: 5%;
+  width: 30%;
+
 }
 
 .mountain-block{
