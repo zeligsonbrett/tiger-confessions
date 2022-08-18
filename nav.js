@@ -3,7 +3,7 @@ var $navigationLinks = $('#navigation > .nav-wrapper > ul > li > a');
 // console.log($navigationLinks)
 // cache (in reversed order) the sections
 var $cards = $($(".decade").get().reverse());
- console.log($cards)
+
 
 
 // map each section id to their corresponding navigation link
@@ -12,9 +12,6 @@ $cards.each(function () {
   var id = $(this).attr('id');
   sectionIdTonavigationLink[id] = $('#navigation > .nav-wrapper > ul > li > a[href=\\#' + id + ']');
 });
-
-console.log(sectionIdTonavigationLink["b1940"])
-
 
 // throttle function, enforces a minimum time interval
 function throttle(fn, interval) {
@@ -49,7 +46,6 @@ function highlightNavigation() {
 
     // if the user has scrolled over the top of the section  
     if (scrollPosition >= sectionTop) {
-        console.log(currentSection)
       // get the section id
       var id = currentSection.attr('id');
       // get the corresponding navigation link

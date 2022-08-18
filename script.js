@@ -24,8 +24,7 @@ let margin = { top: 10, right: 50, bottom: 30, left: 50 },
 // append the svg object to the body of the page
 let svg = d3.selectAll(".mountain-chart")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
@@ -40,11 +39,10 @@ let margin2 = { top: 10, right: 10, bottom: 10, left: 10 },
 for (let decade in wordCloudDict) {
     // append the svg object to the body of the page
     let cloud = d3.select("#d" + decade).select(".word-cloud").append("svg")
-        .attr("width", width2 + margin.left + margin.right)
-        .attr("height", height2 + margin.top + margin.bottom)
+        .attr("viewBox", "0 0 " + (width2 + margin2.left + margin2.right) + " " + (height2 + margin2.top + margin2.bottom))
         .append("g")
         .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
+            "translate(" + margin2.left + "," + margin2.top + ")");
 
     // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
     // Wordcloud features that are different from one word to the other must be here

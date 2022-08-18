@@ -135,6 +135,20 @@ path.domain{
   flex-direction: column;
 
 }
+
+.mountain-chart{
+  width: 100%;
+  height: 100%;
+}
+
+.word-cloud{
+  width: 100%;
+}
+
+.mountain-block{
+  width: 100%;
+}
+
 /*nav bar styles */
 #navigation{
   height: 100vh;
