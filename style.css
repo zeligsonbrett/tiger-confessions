@@ -232,7 +232,6 @@ browser window really skinny */
     }
     .intro{
       flex-direction: column-reverse;
-      min-height: 70vh;
     }
 
     .intro img{
