@@ -149,6 +149,8 @@ path.domain{
   width: 100%;
 }
 
+
+
 /*nav bar styles */
 #navigation{
   height: 100vh;
@@ -218,6 +220,9 @@ browser window really skinny */
       align-items: center;
     }
     
+    .graph-block-container{
+      width: 90%;
+    }
     #navigation{
       display: none;
     }
@@ -225,7 +230,6 @@ browser window really skinny */
     .decades{
       width: 100%;
     }
-
     .intro{
       flex-direction: column-reverse;
     }
@@ -233,5 +237,12 @@ browser window really skinny */
     .intro img{
       width: 90%;
     }
+
+    .years{
+      font-size: 60px;
+      line-height: 20px;
+    }
+
+    
 
   }
