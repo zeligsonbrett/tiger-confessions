@@ -1,5 +1,13 @@
 // word cloud data
 let wordCloudDict = {
+    "1890": [
+        { word: "meals", size: "10" },
+        { word: "bicycle", size: "10" },
+        { word: "groceries", size: "10" },
+        { word: "advertisements", size: "10" },
+        { word: "furniture", size: "10" },
+        { word: "crockery", size: "10" },
+    ],
     "1930": [
         { word: "gold", size: "14.3" },
         { word: "Roosevelt", size: "18.1" },
@@ -159,9 +167,10 @@ d3.csv("allwordsfreq.csv", function (data) {
             .attr("stroke", function (d) { return myColor })
 
         // update the chart header
-        d3.select("#" + selectedDecade).select(".chart-title")
-            .text("Frequency of " + selectedGroup + " every 100,000 words")
-            .attr("style", "color: #F8F4EA")
+        // d3.select("#" + selectedDecade).select(".chart-title")
+        //     .text("Decade")
+            // .text("Frequency of " + selectedGroup + " every 100,000 words")
+            // .attr("style", "color: #F8F4EA")
         
         // highlight selected group
         button.classList.add("selected")
