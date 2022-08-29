@@ -1,12 +1,51 @@
 // word cloud data
 let wordCloudDict = {
+    "1880": 
+    [
+        { word: "bookbinder", size: 22.8/2 },
+        { word: "grocers", size: 28.9/2 },
+        { word: "tailor", size: 16.9/2 },
+        { word: "wholesale", size: 27/2 },
+        { word: "Bickham", size: 28.9/2 },
+        { word: "Tobacco", size: 23.3/2 },
+        { word: "Gentlemen", size: 17.8/2 },
+    ],
     "1890": [
-        { word: "meals", size: "10" },
-        { word: "bicycle", size: "10" },
-        { word: "groceries", size: "10" },
-        { word: "advertisements", size: "10" },
-        { word: "furniture", size: "10" },
-        { word: "crockery", size: "10" },
+        { word: "meals", size: 22.6/2 },
+        { word: "advertisments", size: 22.3/2 },
+        { word: "lunches", size: 24.3/2 },
+        { word: "furniture", size: 18.4/2 },
+        { word: "studying", size: 16.6/2 },
+        { word: "drug", size: 17.3/2 },
+        { word: "bicycle", size: 16.2/2 },
+    ],
+    "1900": [
+        { word: "oclock", size: 22.8/2 },
+        { word: "rehearsal", size: 22/2 },
+        { word: "Triangle", size: 18.5/2 },
+        { word: "Bric-a-brac", size: 16.6/2 },
+        { word: "Casino", size: 16/2 },
+        { word: "performance", size: 15.7/2 },
+        { word: "Blair", size: 15.8/2 },
+    ],
+    "1910": [
+        { word: "Associated", size: 21.9/2 },
+        { word: "troops", size: 24.1/2 },
+        { word: "Roosevelt", size: 21.2/2 },
+        { word: "military", size: 21.2/2 },
+        { word: "war", size: 17.7/2 },
+        { word: "corps", size: 21.2/2 },
+        { word: "training", size: 15/2 },
+        { word: "rowing", size: 13/2 },
+        { word: "lake", size: 13.4/2 },
+    ],
+    "1920": [
+        { word: "Commons", size: 16.6/1.2 },
+        { word: "Speakers", size: 13.6/1.2 },
+        { word: "yearlings", size: 12.9/1.2 },
+        { word: "orchestra", size: 12.4/1.2 },
+        { word: "prom", size: 12.3/1.2 },
+        { word: "arts", size: 13.7/1.2 },
     ],
     "1930": [
         { word: "gold", size: "14.3" },
@@ -14,12 +53,81 @@ let wordCloudDict = {
         { word: "McCarter", size: "16.6" },
         { word: "geology", size: "12.4" },
         { word: "Crisler", size: "24.9" },
-        { word: "intramural", size: "14.3" }
+        { word: "intramural", size: "14.3" },
+        { word: "squash", size: "16.4" }
     ],
     "1940": [
-        { word: "this", size: "18.1" },
-        { word: "is", size: "16.6" },
-        { word: "test", size: "14.3" },
+        { word: "wartime", size: 32.1/2 },
+        { word: "civilian", size: 30.4/2 },
+        { word: "postwar", size: 26.4/2 },
+        { word: "marine", size: 27.3/2 },
+        { word: "SPIA", size: 24.4/2 },
+        { word: "engineering", size: 13.5/2 },
+        { word: "radio", size: 13.2/2 },
+        { word: "WPRU", size: 21.9/2 },
+    ],
+    "1950": [
+        { word: "Eisenhower", size: 23.3/2 },
+        { word: "Communist", size: 13.9/2 },
+        { word: "Bicker", size: 13.6/2 },
+        { word: "frosh", size: 15.5/2 },
+        { word: "soph", size: 14.4/2 },
+        { word: "prayer", size: 21.9/2 },
+        { word: "worship", size: 20.2/2 },
+        { word: "Episcopal", size: 19/2 },
+    ],
+    "1960": [
+        { word: "coeducation", size: 19/2 },
+        { word: "UGC", size: 26.5/2 },
+        { word: "ICC", size: 19/2 },
+        { word: "Vietnam", size: 18.8/2 },
+        { word: "SDS", size: 25.7/2 },
+        { word: "Wilcox", size: 18.9/2 },
+    ],
+    "1970": [
+        { word: "Nixon", size: 18.6/2 },
+        { word: "ROTC", size: 17.3/2 },
+        { word: "energy", size: 16.5/2 },
+        { word: "oil", size: 15.5/2 },
+        { word: "tution", size: 15.5/2 },
+        { word: "costs", size: 15.8/2 },
+        { word: "budget", size: 13.6/2 },
+        { word: "Jones", size: 13/2 },
+        { word: "Jadwin", size: 15.8/2 },
+    ],
+    "1980": [
+        { word: "Soviet", size: 17.5/2 },
+        { word: "Reagan", size: 27.9/2 },
+        { word: "nuclear", size: 17.8/2 },
+        { word: "Butler", size: 16.3/2 },
+        { word: "residential", size: 13.3/2 },
+        { word: "harassment", size: 15.4/2 },
+        { word: "USG", size: 14/2 }, 
+        { word: "forum", size: 13.2/2 },
+        { word: "Frank", size: 14.8/2 },
+        { word: "computer", size: 12.2/2 },
+    ],
+    "1990": [
+        { word: "Clinton", size: 23.5/2 },
+        { word: "softball", size: 15.3/2 },
+        { word: "volleyball", size: 14.9/2 },
+        { word: "hockey", size: 14.9/2 },
+        { word: "environmental", size: 14.1/2 },
+        { word: "AIDS", size: 13.8/2 },
+        { word: "television", size: 12.9/2 },
+        { word: "machine", size: 17.3/2 },
+    ],
+    "2000": [
+        { word: "Iraq", size: 17.8/2.5 },
+        { word: "Frist", size: 18.1/2.5 },
+        { word: "Bush", size: 14.4/2.5 },
+        { word: "email", size: 13.7/2.5},
+        { word: "drinking", size: 13.5/2.5 },
+        { word: "aid", size: 10.5/2.5 },
+        { word: "Tilghman", size: 18/2.5 },
+        { word: "machine", size: 17.3/2.5 },
+        { word: "guys", size: 12.9/2.5 },
+        { word: "girls", size: 12.9/2.5 },
     ],
     // sizes wrong
     "2010": [
@@ -180,7 +288,7 @@ d3.csv("allwordsfreq.csv", function (data) {
     // or # on change
     d3.selectAll(".selectButton").on("click", function (d) {
         // recover the option that has been chosen
-        let selectedWord = d3.select(this).text().toLowerCase();
+        let selectedWord = d3.select(this).text().toLowerCase().replace(/[^A-Za-z0-9\s]/g,"");
         // get id of container
         let selectedDecade = this.closest('.graph-block-container').id
 
