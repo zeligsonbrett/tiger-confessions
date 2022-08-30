@@ -48,13 +48,13 @@ let wordCloudDict = {
         { word: "arts", size: 13.7/1.2 },
     ],
     "1930": [
-        { word: "gold", size: "14.3" },
-        { word: "Roosevelt", size: "18.1" },
-        { word: "McCarter", size: "16.6" },
-        { word: "geology", size: "12.4" },
-        { word: "Crisler", size: "24.9" },
-        { word: "intramural", size: "14.3" },
-        { word: "squash", size: "16.4" }
+        { word: "gold", size: 14.3/2 },
+        { word: "Roosevelt", size: 18.1/2 },
+        { word: "McCarter", size: 16.6/2 },
+        { word: "geology", size: 12.4/2 },
+        { word: "Crisler", size: 24.9/2 },
+        { word: "intramural", size: 14.3/2 },
+        { word: "squash", size: 16.4/2 }
     ],
     "1940": [
         { word: "wartime", size: 32.1/2 },
