@@ -169,6 +169,11 @@ opacity: 1;
   fill: #F8F4EA !important;
 }
 
+.chart-header{
+  color: #c24532 !important;
+  font-family: franklin-gothic-urw, sans-serif;
+}
+
 
 g.tick line{
   display: none;

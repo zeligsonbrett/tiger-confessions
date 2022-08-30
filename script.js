@@ -233,6 +233,15 @@ d3.csv("allwordsfreq.csv", function (data) {
         .attr("class", "myYaxis")
         .call(d3.axisLeft(y));
 
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .attr("class", "chart-title")
+        .style("text-anchor", "middle")
+        .text("Mentions per 100,000 words");
+
 
     let line = svg
         .append('g')
@@ -279,11 +288,14 @@ d3.csv("allwordsfreq.csv", function (data) {
             .attr("stroke", function (d) { return myColor })
 
         // update the chart header
-        // d3.select("#" + selectedDecade).select(".chart-title")
-        //     .text("Decade")
-            // .text("Frequency of " + selectedGroup + " every 100,000 words")
-            // .attr("style", "color: #F8F4EA")
-        
+        d3.select("#" + selectedDecade).select(".chart-header")
+            .text("Decade")
+            .text("Frequency of \“" + selectedGroup + "\” over time")
+            .attr("style", "color: #F8F4EA")
+            var axisLabelX = 50;
+            var axisLabelY = height / 2;
+
+
         // highlight selected group
         button.classList.add("selected")
     }
