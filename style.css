@@ -92,27 +92,36 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 80%;
+  width: 90%;
   margin: auto;
+
 }
 
 .image-block .image-block-container{
-  width: 30%;
+  /* width: 35%; */
   padding-top: 5%;
   padding-bottom: 5%;
-  transition: transform .2s;
   /* transition: opacity .2s;
   opacity: 60%; */
 }
 
 
-.image-block .image-block-container:hover {
-  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+.image-block .image-block-container img:hover {
+  transform: scale(1.5); 
+  object-fit: contain;
+  object-position: center;
+  /* max-height: 1000px */
   /* opacity: 100%; */
 }
 
 .image-block-container img{
-  width: 100%;
+  width: 24vw;
+  height: 16vw;
+  max-height: 1000px;
+  object-fit: cover;
+  object-position: top;
+  transition: transform .3s ease-in-out;
+  /* transition: max-height .3s; */
 }
 
 .image-block .caption{

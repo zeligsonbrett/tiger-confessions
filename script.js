@@ -131,10 +131,15 @@ let wordCloudDict = {
     ],
     // sizes wrong
     "2010": [
-        { word: "Obama", size: "18.1" },
-        { word: "Facebook", size: "16.6" },
-        { word: "climate", size: "14.3" },
-        { word: "mental", size: "14.3" },
+        { word: "Trump", size: 21.4/2 },
+        { word: "Obama", size: 13.3/2 },
+        { word: "Facebook", size: 14.9/2 },
+        { word: "online", size: 12.1/2 },
+        { word: "mental", size: 15.9/2 },
+        { word: "referendum", size: 14.1/2 },
+        { word: "gender", size: 14.4/2 },
+        { word: "diversity", size: 13.1/2 },
+        { word: "sexual", size: 14.6/2 },
     ]
 }
 
