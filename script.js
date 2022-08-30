@@ -125,7 +125,6 @@ let wordCloudDict = {
         { word: "drinking", size: 13.5/2.5 },
         { word: "aid", size: 10.5/2.5 },
         { word: "Tilghman", size: 18/2.5 },
-        { word: "machine", size: 17.3/2.5 },
         { word: "guys", size: 12.9/2.5 },
         { word: "girls", size: 12.9/2.5 },
     ],
