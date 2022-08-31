@@ -78,6 +78,7 @@ let wordCloudDict = {
     ],
     "1960": [
         { word: "coeducation", size: 19/2 },
+        { word: "Negro", size: 22.9/2 },
         { word: "UGC", size: 26.5/2 },
         { word: "ICC", size: 19/2 },
         { word: "Vietnam", size: 18.8/2 },
