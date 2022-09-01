@@ -133,6 +133,8 @@ let wordCloudDict = {
     "2010": [
         { word: "Trump", size: 21.4/2 },
         { word: "Obama", size: 13.3/2 },
+        { word: "justice", size: 13.2/2 },
+        { word: "Asian", size: 14.3/2 },
         { word: "Facebook", size: 14.9/2 },
         { word: "online", size: 12.1/2 },
         { word: "mental", size: 15.9/2 },
@@ -271,7 +273,7 @@ d3.csv("allwordsfreq.csv", function (data) {
     
         if(typeof dataFilter[0]['value'] == 'undefined') {
             d3.select("#" + selectedDecade).select(".error-msg")
-            .text("\“" + selectedGroup + "\” was not used frequently enough to be included in this viewer. If you're interested in seeing its usage over time, you can search for it in the Mudd Library Archive explorer")
+            .text("\“" + selectedGroup + "\” was not included in our analysis, because it was either not used frequently enough to be included in our analysis or was removed during data cleaning. If you're interested in seeing its usage over time, you can search for it in the Mudd Library Archive explorer")
             return false;
         }
        
@@ -314,7 +316,7 @@ d3.csv("allwordsfreq.csv", function (data) {
     // or # on change
     d3.selectAll(".selectButton").on("click", function (d) {
         // recover the option that has been chosen
-        let selectedWord = d3.select(this).text().toLowerCase().replace(/[^A-Za-z0-9\s]/g,"");
+        let selectedWord = d3.select(this).text().toLowerCase().replace(/[^A-Za-z0-9]/g,"");
         // get id of container
         let selectedDecade = this.closest('.graph-block-container').id
 
@@ -327,7 +329,7 @@ d3.csv("allwordsfreq.csv", function (data) {
         // recover the option that has been chosen
         d3.event.preventDefault();
 
-        let selectedWord = d3.select(".lookupText").property("value").toLowerCase().replace(/[^A-Za-z0-9\s]/g,"");
+        let selectedWord = d3.select(".lookupText").property("value").toLowerCase().replace(/[^A-Za-z0-9]/g,"");
         // get id of container
         let selectedDecade = this.closest('.graph-block-container').id
         // run the updateChart function with this selected option
