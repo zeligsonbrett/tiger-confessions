@@ -268,6 +268,16 @@ d3.csv("allwordsfreq.csv", function (data) {
         // Create new data with the selection?
         let dataFilter = data.map(function (d) { return { time: d.timedecade, value: d[selectedGroup] } })
 
+    
+        if(typeof dataFilter[0]['value'] == 'undefined') {
+            d3.select("#" + selectedDecade).select(".error-msg")
+            .text("\“" + selectedGroup + "\” was not used frequently enough to be included in this viewer. If you're interested in seeing its usage over time, you can search for it in the Mudd Library Archive explorer")
+            return false;
+        }
+       
+        d3.select("#" + selectedDecade).select(".error-msg")
+        .text("")
+
         y.domain([0, d3.max(data, function (d) {
             return +d[selectedGroup] * 10;
         })]);
@@ -290,7 +300,6 @@ d3.csv("allwordsfreq.csv", function (data) {
 
         // update the chart header
         d3.select("#" + selectedDecade).select(".chart-header")
-            .text("Decade")
             .text("Frequency of \“" + selectedGroup + "\” over time")
             .attr("style", "color: #F8F4EA")
             var axisLabelX = 50;
@@ -314,6 +323,17 @@ d3.csv("allwordsfreq.csv", function (data) {
         update(this, selectedWord, selectedDecade)
     })
 
+    d3.select(".lookupSubmit").on("click", function (d) {
+        // recover the option that has been chosen
+        d3.event.preventDefault();
+
+        let selectedWord = d3.select(".lookupText").property("value").toLowerCase().replace(/[^A-Za-z0-9\s]/g,"");
+        // get id of container
+        let selectedDecade = this.closest('.graph-block-container').id
+        // run the updateChart function with this selected option
+        update(this, selectedWord, selectedDecade)
+    })
+
     // VERY HACKY way to intialize all the mountain charts to the first word
     for(let decade in wordCloudDict){
         let word = wordCloudDict[decade][0]['word']
@@ -325,6 +345,7 @@ d3.csv("allwordsfreq.csv", function (data) {
                         })
         update(element.node(), word.toLowerCase(), "d" + decade)
     }
+    update(d3.select(".lookupSubmit").node(), "princetonian", "dlookup")
 })
 
 
