@@ -207,7 +207,7 @@ for (let decade in wordCloudDict) {
     }
 }
 //Read the data
-d3.csv("allwordsfreq.csv", function (data) {
+d3.csv("https://assets.dailyprincetonian.com/projects.dailyprincetonian.com/140-years-prince-history/allwordsfreq.csv", function (data) {
 
 
     // Add X axis --> it is a date format
@@ -273,7 +273,8 @@ d3.csv("allwordsfreq.csv", function (data) {
     
         if(typeof dataFilter[0]['value'] == 'undefined') {
             d3.select("#" + selectedDecade).select(".error-msg")
-            .text("\“" + selectedGroup + "\” was not included in our analysis, because it was either not used frequently enough to be included in our analysis or was removed during data cleaning. If you're interested in seeing its usage over time, you can search for it in the Mudd Library Archive explorer")
+            .text("\“" + selectedGroup + "\” was not included in our analysis because it was either not used frequently enough to be included in our analysis or was removed during data cleaning. If you're interested in seeing its usage over time, you can use the Princeton University Library Archive explorer.")
+            .style("color", myColor)
             return false;
         }
        
