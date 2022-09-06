@@ -60,6 +60,19 @@
   font-size: 19px;
 }
 
+
+.intro-text{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  color: #F8F4EA;
+  font-family: franklin-gothic-urw;
+
+
+  font-size: 19px;
+}
+
 .decade-header{
   padding-top: 40px;
   text-align: center;
@@ -68,6 +81,18 @@
   color: #c24532;
 }
 
+.intro-text p{
+  padding-bottom: 15px;
+}
+
+.intro-text a{
+  color: #c24532;
+  text-decoration: none;
+}
+
+.intro-text a:hover{
+  text-decoration: underline;
+}
 
 .decade-text p{
   padding-bottom: 15px;
@@ -107,12 +132,10 @@
 
 
 .image-block .image-block-container img:hover {
-  transform: scale(1.5); 
-  object-fit: contain;
-  object-position: center;
-  /* max-height: 1000px */
-  /* opacity: 100%; */
+ opacity: 50%;
+
 }
+
 
 .image-block-container img{
   width: 24vw;
@@ -304,5 +327,10 @@ browser window really skinny */
       font-size: 60px;
       line-height: 20px;
     }
+
+
+.intro-text{
+  width: 90%;
+}
 
   }
