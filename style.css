@@ -328,9 +328,18 @@ browser window really skinny */
       line-height: 20px;
     }
 
+    .image-block{
+      flex-direction: column;
+    }
+
 
 .intro-text{
   width: 90%;
+}
+
+.image-block-container img{
+  width: 72vw;
+  height: 48vw; 
 }
 
   }
