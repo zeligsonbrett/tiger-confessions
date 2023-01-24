@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<link rel="stylesheet" href="style.css" type="text/css">
+
+<script type="module" src="array.js"></script>
+</head>
+
+<body>
+<div>
+<label for="field">Term to Analyze</label>
+</div>
+<input type="text" id="field" name="field" required
+        size="20">
+
+
+<button id="search">Search</button>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+
+<div class="toggle-wrapper">
+    <div id="showCount">
+      <p class="counts-label">Frequency/Counts</p>
+      <label class="switch">
+        <input type="checkbox" id="switch">
+        <span class="slider round"></span>
+      </label>
+    </div>
+</div>
+
+<script type="module" src="test.js"></script>
+</body>
